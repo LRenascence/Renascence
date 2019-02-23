@@ -13,3 +13,15 @@ def fetch(url):
     # Page is now downloaded.
     links = parse_links(response)
     q.add(links)
+	
+request = 'GET {} HTTP/1.0\r\nHost: xkcd.com\r\n\r\n'.format(url)
+encoded = request.encode('ascii')
+
+while True:
+    try:
+        sock.send(encoded)
+        break  # Done.
+    except OSError as e:
+        pass
+
+print('sent')
